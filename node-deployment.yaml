@@ -1,0 +1,18 @@
+apiVesion: apps/v1 
+kind: Deployment
+metadata:
+  name: node-deployment
+spec:
+  selector:
+    matchLabels:
+      web: app
+  template:
+    metadata:
+      labels:
+        web: app
+    spec:
+      containers:
+      - name: node-app
+        image: muralisocial123/docker pull muralisocial123/node-test-image:latest
+        ports:
+        - containerPort: 3000

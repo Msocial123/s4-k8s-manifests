@@ -1,0 +1,22 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: web-app-deployment
+  labels:
+    name: web  
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: web-app
+        image: muralisocial123/web-app-test:latest
+        ports:
+        - containerPort: 80
+

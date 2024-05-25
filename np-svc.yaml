@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: port-svc-example
+spec:
+  selector:
+    app: p
+  ports:
+  - port: 81
+    targetPort: 80
+  type: NodePort  
