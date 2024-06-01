@@ -1,0 +1,16 @@
+apiVersion: apps/v1 
+kind: DaemonSet
+metadata: 
+  name: simple-search
+spec:
+  selector:
+    matchLabels:
+      name: web-daemon 
+  template:
+    metadata:
+      labels:
+        name: web-daemon
+    spec: 
+      containers:
+        - name: web-logs 
+          image: quay.io/fluentd_elasticsearch/fluentd:latest         

@@ -24,15 +24,23 @@ spec:
                 key: mysql-root-password   
         ports:
         - containerPort: 3306
-          name: web
+          name: mysql
         volumeMounts:
-        - name: www
-          mountPath: /usr/share/nginx/html
+        - name: data-volume
+          mountPath: /var/lib/mysql
+        - name: mysql-config 
+          mountPath: /etc/mysql/conf.d 
+          readOnly: true   
+      volumes: 
+        - name: mysql-config 
+          configMap:
+            name: mysql-config  
   volumeClaimTemplates:
   - metadata:
-      name: www
+      name: data-volume
     spec:
+      storageClassName: gcp-storage-class
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 1Gi
+          storage: 5Gi
