@@ -27,7 +27,14 @@ spec:
           - weight: 1
             preference:
               matchExpressions:
-              - key: disktype
+              - key: app
                 operator: In
                 values:
-                - ssd
+                - web-node
+          - weight: 50
+            preference:
+              matchExpressions:
+                - key: app 
+                  operator: In 
+                  values:
+                    - web-app

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app-deployment
+  name: nginx-app-required
 spec:
   selector:
     matchLabels: 
@@ -25,5 +25,5 @@ spec:
               - key: app
                 operator: In
                 values:
-                - node-app
+                - web-app
                 
