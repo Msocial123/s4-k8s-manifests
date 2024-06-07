@@ -1,0 +1,12 @@
+apiVersion: v1 
+kind: Service
+metadata:
+  name: node-app-service 
+spec:
+  selector:
+    name:  node-app 
+  ports:
+    - protocol: TCP 
+      port: {{ .Values.service.port }}
+      targetPort: 3000
+  type: LoadBalancer      

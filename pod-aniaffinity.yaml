@@ -1,0 +1,29 @@
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: catalogue-example
+  labels: 
+    name: catalogue-example 
+spec: 
+  containers: 
+    - name: nginx 
+      image: nginx 
+--- 
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: cart-example 
+spec: 
+  affinity: 
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector: 
+          matchExpressions:
+            - key: name 
+              operator: In 
+              values: 
+                - catalogue-example
+        topologyKey: topology.kubernetes.io/zone
+  containers:
+    - name: nginx 
+      image: nginx                 

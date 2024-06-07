@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment 
+  labels:
+    name: node-app 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: node-app 
+  template:
+    metadata:
+      labels:
+        name: node-app
+    spec:
+      containers: 
+        - name: node-app-example 
+          imagePullPolicy: Always 
+          image: muralisocial123/node-app-example:latest
+          envFrom:
+          - configMapRef:
+              name: node-configmap
+        ports:
+          - containerPort: 3000  
+               
